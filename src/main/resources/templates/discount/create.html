@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thêm khuyến mãi mới</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Thêm khuyến mãi mới</h2>
+    <th:block th:if="${message}">
+        <p th:text="${message}"></p>
+    </th:block>
+    <form th:action="@{/discounts/create}" th:object="${discount}" method="post">
+
+        <div class="mb-3">
+            <label for="title" class="form-label">Tiêu đề</label>
+            <input th:field="*{title}" type="text" class="form-control" id="title" placeholder="Nhập tiêu đề khuyến mãi" required>
+        </div>
+
+
+        <div class="mb-3">
+            <label for="startTime" class="form-label">Thời gian bắt đầu</label>
+            <input th:field="*{startTime}" type="datetime-local" class="form-control" id="startTime" required>
+        </div>
+
+
+        <div class="mb-3">
+            <label for="endTime" class="form-label">Thời gian kết thúc</label>
+            <input th:field="*{endTime}" type="datetime-local" class="form-control" id="endTime" required>
+        </div>
+
+
+        <div class="mb-3">
+            <label for="discount" class="form-label">Mức giảm giá </label>
+            <input th:field="*{moneyDiscount}" type="number" class="form-control" id="discount" placeholder="Nhập mức giảm giá" required min="1" >
+        </div>
+
+
+        <div class="mb-3">
+            <label for="details" class="form-label">Chi tiết</label>
+            <textarea th:field="*{description}" class="form-control" id="details" rows="3" placeholder="Nhập chi tiết khuyến mãi"></textarea>
+        </div>
+
+        <!-- Nút Lưu và Hủy -->
+        <div class="d-flex justify-content-between">
+            <button type="submit" class="btn btn-primary" value="Create discount">Lưu</button>
+            <button type="reset" class="btn btn-secondary"><a style="color: aliceblue" href="/discounts">Hủy</a></button>
+        </div>
+    </form>
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
